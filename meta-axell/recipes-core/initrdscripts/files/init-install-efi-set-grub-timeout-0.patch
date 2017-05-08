@@ -1,0 +1,13 @@
+diff --git a/init-install-efi.sh b/init-install-efi.sh
+index 0362699..2a9582b 100644
+--- a/init-install-efi.sh
++++ b/init-install-efi.sh
+@@ -248,6 +248,8 @@ if [ -f /run/media/$1/EFI/BOOT/grub.cfg ]; then
+     sed -i "s/ LABEL=[^ ]*/ /" $GRUBCFG
+     # Delete any root= strings
+     sed -i "s/ root=[^ ]*/ /g" $GRUBCFG
++    # Set the timeout to 0 if it's present so the boot is as quick as possible
++    sed -i "s/timeout=[[:digit:]]\+/timeout=0/g" $GRUBCFG
+     # Add the root= and other standard boot options
+     sed -i "s@linux /vmlinuz *@linux /vmlinuz root=PARTUUID=$root_part_uuid rw $rootwait @" $GRUBCF
+ fi

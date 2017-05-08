@@ -1,0 +1,21 @@
+diff --git a/init-install.sh b/init-install.sh
+index 61e7525..6551973 100644
+--- a/init-install.sh
++++ b/init-install.sh
+@@ -268,6 +268,7 @@ if [ -f /etc/grub.d/00_header -a $grub_version -ne 0 ] ; then
+     GRUBCFG="/boot/grub/grub.cfg"
+     mkdir -p $(dirname $GRUBCFG)
+     cat >$GRUBCFG <<_EOF
++timeout=0
+ menuentry "Linux" {
+     search --no-floppy --fs-uuid $boot_uuid --set root
+     linux /vmlinuz root=PARTUUID=$root_part_uuid $rootwait rw $5 $3 $4
+@@ -281,7 +282,7 @@ if [ $grub_version -eq 0 ] ; then
+     echo "(hd0) ${device}" > /boot/grub/device.map
+     echo "Preparing custom grub menu..."
+     echo "default 0" > /boot/grub/menu.lst
+-    echo "timeout 30" >> /boot/grub/menu.lst
++    echo "timeout 0" >> /boot/grub/menu.lst
+     echo "title Live Boot/Install-Image" >> /boot/grub/menu.lst
+     echo "root  (hd0,0)" >> /boot/grub/menu.lst
+     echo "kernel /vmlinuz root=$rootfs rw $3 $4" >> /boot/grub/menu.lst

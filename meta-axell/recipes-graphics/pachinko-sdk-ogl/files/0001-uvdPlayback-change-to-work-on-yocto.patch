@@ -1,0 +1,25 @@
+From 28a844225ad9d2e0831e109a386a83e3932e9498 Mon Sep 17 00:00:00 2001
+From: Sanjay R Mehta <sanju.mehta@amd.com>
+Date: Mon, 17 Apr 2017 13:38:10 +0530
+Subject: [PATCH] uvdPlayback change to work on yocto
+
+---
+ samples/uvdPlayback/src/vdpauDecode.cpp | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/samples/uvdPlayback/src/vdpauDecode.cpp b/samples/uvdPlayback/src/vdpauDecode.cpp
+index 7a7ab5f..b134065 100755
+--- a/samples/uvdPlayback/src/vdpauDecode.cpp
++++ b/samples/uvdPlayback/src/vdpauDecode.cpp
+@@ -79,7 +79,7 @@ AMD_RESULT vdpauHandle::init() {
+ 
+ 	int32 flags = RTLD_NOW;
+ 
+-	object = dlopen("/usr/lib64/libvdpau.so", flags | RTLD_LOCAL | RTLD_LAZY);
++	object = dlopen("/usr/lib64/libvdpau.so.1", flags | RTLD_LOCAL | RTLD_LAZY);
+ 
+ 	if (!object)
+ 		object = dlopen("/usr/lib/x86_64-linux-gnu/libvdpau.so", flags);
+-- 
+2.7.4
+

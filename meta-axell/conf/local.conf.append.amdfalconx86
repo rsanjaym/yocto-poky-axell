@@ -1,0 +1,4 @@
+# Set AXELL_MINIMAL_IMAGE to "yes" to enable the limit of 500 MB on root filesystem
+# It removes the sample/example packages, debugging and profiling tools
+# from the root file system, and reduce the extra free space from the image.
+AXELL_MINIMAL_IMAGE ??= "no"
